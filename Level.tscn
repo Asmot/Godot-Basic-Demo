@@ -1,4 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -16,7 +19,7 @@ size = Vector3( 30, 1, 30 )
 [node name="Level" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.90476, 0.425921, 0, -0.425921, 0.90476, 0.0327339, 13.9843, 14.2034 )
+transform = Transform( -0.999489, 0.00286408, -0.0318405, -0.0106688, 0.908997, 0.416666, 0.0301363, 0.416793, -0.908502, 0.0327339, 8.35044, -21.9317 )
 fov = 88.2708
 
 [node name="Box" type="RigidBody" parent="."]
@@ -98,3 +101,7 @@ shape = SubResource( 3 )
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
 mesh = SubResource( 4 )
 material/0 = null
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92931, -11.4851 )
+script = ExtResource( 2 )
