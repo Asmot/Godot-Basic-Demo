@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -16,19 +16,22 @@ extents = Vector3( 15, 1, 15 )
 [sub_resource type="CubeMesh" id=4]
 size = Vector3( 30, 1, 30 )
 
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.729412, 0.823529, 0.796078, 1 )
+
 [node name="Level" type="Spatial"]
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.999489, 0.00286408, -0.0318405, -0.0106688, 0.908997, 0.416666, 0.0301363, 0.416793, -0.908502, 0.0327339, 8.35044, -21.9317 )
+transform = Transform( -0.999489, 0.00286408, -0.0318405, -0.0106688, 0.908997, 0.416666, 0.0301363, 0.416793, -0.908502, 0.0327339, 8.17547, -18.2456 )
 fov = 88.2708
 
-[node name="Box" type="RigidBody" parent="."]
+[node name="RedBox" type="RigidBody" parent="."]
 transform = Transform( 0.801734, 0.597681, 0, -0.483062, 0.647982, -0.588872, -0.351958, 0.472119, 0.808226, 0, 7.8025, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box"]
+[node name="CollisionShape" type="CollisionShape" parent="RedBox"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box"]
+[node name="MeshInstance" type="MeshInstance" parent="RedBox"]
 mesh = SubResource( 2 )
 material/0 = SubResource( 5 )
 
@@ -100,7 +103,7 @@ shape = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
 mesh = SubResource( 4 )
-material/0 = null
+material/0 = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92931, -11.4851 )
