@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -19,11 +19,19 @@ size = Vector3( 30, 1, 30 )
 [sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.729412, 0.823529, 0.796078, 1 )
 
-[node name="Level" type="Spatial"]
+[sub_resource type="ProceduralSky" id=7]
+sky_top_color = Color( 0.529412, 0.768627, 0.823529, 1 )
+sky_horizon_color = Color( 0.74902, 0.639216, 0.12549, 1 )
+ground_bottom_color = Color( 0.172549, 0.192157, 0.215686, 1 )
+ground_horizon_color = Color( 0.835294, 0.737255, 0.352941, 1 )
+ground_curve = 0.105561
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.999489, 0.00286408, -0.0318405, -0.0106688, 0.908997, 0.416666, 0.0301363, 0.416793, -0.908502, 0.0327339, 8.17547, -18.2456 )
-fov = 88.2708
+[sub_resource type="Environment" id=8]
+background_mode = 2
+background_sky = SubResource( 7 )
+ambient_light_color = Color( 0.517647, 0.505882, 0.505882, 1 )
+
+[node name="Level" type="Spatial"]
 
 [node name="RedBox" type="RigidBody" parent="."]
 transform = Transform( 0.801734, 0.597681, 0, -0.483062, 0.647982, -0.588872, -0.351958, 0.472119, 0.808226, 0, 7.8025, 0 )
@@ -106,5 +114,19 @@ mesh = SubResource( 4 )
 material/0 = SubResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92931, -11.4851 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92931, 11.5332 )
 script = ExtResource( 2 )
+
+[node name="PlayerCameraTarget" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.864143, 0.503246, 0, -0.503246, 0.864143, 0, 4.38631, 7.35228 )
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.7306, 38.93 )
+environment = SubResource( 8 )
+target = NodePath("../Player/PlayerCameraTarget")
+enabled = true
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.885697, 0.447886, -0.122226, 0.140892, 0.510156, 0.848463, 0.442369, 0.73426, -0.514947, -0.123806, 5.94404, 11.4794 )
+shadow_enabled = true
+shadow_color = Color( 0.498039, 0.117647, 0.117647, 1 )
