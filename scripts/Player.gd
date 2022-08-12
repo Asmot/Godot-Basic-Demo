@@ -7,6 +7,8 @@ var velocity = Vector3(0, 0, 0);
 const SPEED = 5;
 const SPEED_ROLL = 5;
 
+const GRAVITY = 1000;
+
 func _ready():
 	print("Player " + playerName + " is ready")
 	print("Speed " + str(velocity))
