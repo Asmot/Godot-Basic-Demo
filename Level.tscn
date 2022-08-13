@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://textures/TilesTerracottaRedHexagon001/TilesTerracottaRedHexagon001_COL_1K.jpg" type="Texture" id=4]
 [ext_resource path="res://textures/TilesTerracottaRedHexagon001/TilesTerracottaRedHexagon001_NRM_1K.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/blocksLibrary.tres" type="MeshLibrary" id=6]
+[ext_resource path="res://assets/Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -19,13 +20,13 @@ refraction_scale = 0.05
 refraction_texture_channel = 0
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 15, 1, 15 )
+extents = Vector3( 30, 1, 30 )
 
 [sub_resource type="CubeMesh" id=4]
-size = Vector3( 30, 1, 30 )
+size = Vector3( 60, 1, 60 )
 
 [sub_resource type="SpatialMaterial" id=6]
-albedo_color = Color( 0.47451, 0.478431, 0.4, 1 )
+albedo_color = Color( 0.886275, 0.929412, 0.054902, 1 )
 albedo_texture = ExtResource( 4 )
 normal_enabled = true
 normal_scale = -3.37
@@ -33,75 +34,207 @@ normal_texture = ExtResource( 5 )
 uv1_scale = Vector3( 0.1, 0.1, 0.1 )
 uv1_triplanar = true
 
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -14.6186, 1.47826, 2.35633 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "enimy1Animation"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -16.4827, 1.47826, 2.35633 ), Vector3( -5.31474, 1.47826, 2.35633 ), Vector3( -16.7012, 1.47826, 2.35633 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -93.336 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( -14.6186, 1.47826, 2.35633 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "enimy1Animation"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -16.4827, 1.47826, 2.35633 ), Vector3( -5.31474, 1.47826, 2.35633 ), Vector3( -16.7012, 1.47826, 2.35633 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, -93.336 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "enimy4animation"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -2.52529, 1.47826, -9.35386 ), Vector3( -2.52529, 7.9737, -9.35386 ), Vector3( -2.52529, 1.47826, -9.35386 ) ]
+}
+
 [node name="Level" type="Spatial"]
 
-[node name="RedBox" type="RigidBody" parent="."]
+[node name="Boxes" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4189, 0.0178356, -14.9981 )
+
+[node name="RedBox" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.801734, 0.597681, 0, -0.483062, 0.647982, -0.588872, -0.351958, 0.472119, 0.808226, 0, 7.8025, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RedBox"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/RedBox"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RedBox"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/RedBox"]
 mesh = SubResource( 2 )
 material/0 = SubResource( 5 )
 
-[node name="Box2" type="RigidBody" parent="."]
+[node name="Box2" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.801734, 0.597681, 0, -0.483062, 0.647982, -0.588872, -0.351958, 0.472119, 0.808226, -1.24232, 13.7145, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box2"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box2"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box2"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box2"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Box3" type="RigidBody" parent="."]
+[node name="Box3" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.560317, 0.527919, 0.638237, -0.152293, 0.823085, -0.547117, -0.814157, 0.20936, 0.541587, 1.08358, 11.4065, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box3"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box3"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box3"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box3"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Box4" type="RigidBody" parent="."]
+[node name="Box4" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.920265, 0.332276, 0.206651, -0.170991, 0.816515, -0.551421, -0.351958, 0.472119, 0.808226, 3.14301, 13.6397, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box4"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box4"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box4"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box4"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Box5" type="RigidBody" parent="."]
+[node name="Box5" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.920265, 0.332276, 0.206651, -0.170991, 0.816515, -0.551421, -0.351958, 0.472119, 0.808226, -0.0949793, 18.7398, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box5"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box5"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box5"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box5"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Box6" type="RigidBody" parent="."]
+[node name="Box6" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.918253, 0.00673252, 0.395938, 0.181488, 0.881509, -0.435894, -0.351958, 0.472119, 0.808226, 2.89292, 17.3948, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box6"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box6"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box6"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box6"]
 mesh = SubResource( 2 )
 material/0 = null
 
-[node name="Box7" type="RigidBody" parent="."]
+[node name="Box7" type="RigidBody" parent="Boxes"]
 transform = Transform( 0.801734, 0.597681, 0, -0.483062, 0.647982, -0.588872, -0.351958, 0.472119, 0.808226, 3.48712, 10.4933, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Box7"]
+[node name="CollisionShape" type="CollisionShape" parent="Boxes/Box7"]
 shape = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Box7"]
+[node name="MeshInstance" type="MeshInstance" parent="Boxes/Box7"]
 mesh = SubResource( 2 )
 material/0 = SubResource( 5 )
 
@@ -115,14 +248,7 @@ shape = SubResource( 3 )
 mesh = SubResource( 4 )
 material/0 = SubResource( 6 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 0.225297, 1.47826, 7.27673 )
-script = ExtResource( 2 )
-
-[node name="PlayerCameraTarget" type="Spatial" parent="Player"]
-transform = Transform( 1, 0, 0, 0, 0.864143, 0.503246, 0, -0.503246, 0.864143, 0, 4.38631, 7.35228 )
-
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="."]
+[node name="MainCamera" type="InterpolatedCamera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.7306, 38.93 )
 environment = ExtResource( 3 )
 target = NodePath("../Player/PlayerCameraTarget")
@@ -134,12 +260,47 @@ shadow_enabled = true
 shadow_color = Color( 0.498039, 0.117647, 0.117647, 1 )
 shadow_bias = 0.922
 
-[node name="GridMap" type="GridMap" parent="."]
+[node name="Walls" type="GridMap" parent="."]
 mesh_library = ExtResource( 6 )
 data = {
-"cells": PoolIntArray( 0, 0, 0, 6, 0, 0, 65529, 0, 0, 65533, 0, 0, 65534, 0, 0, 65542, 0, 720897, 131065, 0, 720896, 6, 1, 1, 65529, 1, 0, 65534, 1, 0, 65542, 1, 720897, 131065, 1, 720896, 1, 2, 1, 2, 2, 1, 3, 2, 1, 6, 2, 1, 65529, 2, 0, 65530, 2, 1, 65531, 2, 1, 65534, 2, 0, 65542, 2, 720897, 131065, 2, 720896, 131078, 2, 720897, 6, 3, 1, 65529, 3, 0, 65534, 3, 0, 65542, 3, 720897, 131065, 3, 720896, 131078, 3, 720897, 131079, 3, 720897, 6, 4, 0, 65529, 4, 0, 65534, 4, 0, 65542, 4, 720897, 131065, 4, 720896, 131078, 4, 720897, 196614, 4, 720897, 1, 5, 0, 2, 5, 1, 3, 5, 1, 4, 5, 0, 5, 5, 0, 6, 5, 0, 65529, 5, 0, 65532, 5, 0, 65533, 5, 0, 65534, 5, 0, 65535, 5, 0, 65537, 5, 720896, 65538, 5, 720897, 65539, 5, 720897, 65540, 5, 720897, 65541, 5, 720897, 131065, 5, 720896, 131076, 5, 720897, 131077, 5, 720897, 196613, 5, 720897, 0, 6, 0, 2, 6, 1, 7, 6, 0, 65529, 6, 0, 65530, 6, 0, 65531, 6, 0, 65532, 6, 0, 65535, 6, 0, 65536, 6, 720896, 65537, 6, 720896, 131065, 6, 720896, 131066, 6, 720896, 131067, 6, 720896, 131068, 6, 720896, 131069, 6, 720896, 131070, 6, 720896, 131071, 6, 720896, 2, 7, 1, 7, 7, 0, 0, 65528, 0, 1, 65528, 0, 2, 65528, 0, 3, 65528, 0, 5, 65528, 0, 6, 65528, 0, 7, 65528, 0, 65529, 65528, 0, 65530, 65528, 0, 65531, 65528, 0, 65532, 65528, 0, 65533, 65528, 0, 65534, 65528, 0, 65535, 65528, 0, 65536, 65528, 720896, 65537, 65528, 720896, 65538, 65528, 720896, 65539, 65528, 720896, 65540, 65528, 720896, 65541, 65528, 720896, 65542, 65528, 720896, 131065, 65528, 720896, 131066, 65528, 720896, 131067, 65528, 720896, 131068, 65528, 720896, 131069, 65528, 720896, 131070, 65528, 720896, 131071, 65528, 720896, 3, 65529, 0, 4, 65529, 0, 5, 65529, 0, 6, 65529, 0, 65529, 65529, 0, 65542, 65529, 720896, 131065, 65529, 720896, 0, 65530, 1, 6, 65530, 0, 65529, 65530, 0, 65542, 65530, 720896, 131065, 65530, 720896, 0, 65531, 1, 2, 65531, 0, 6, 65531, 720897, 65529, 65531, 0, 65538, 65531, 720896, 65542, 65531, 720896, 131065, 65531, 720896, 0, 65532, 1, 2, 65532, 0, 6, 65532, 0, 65529, 65532, 0, 65532, 65532, 1, 65533, 65532, 1, 65534, 65532, 1, 65535, 65532, 1, 65538, 65532, 720896, 65542, 65532, 720896, 131065, 65532, 720896, 0, 65533, 1, 2, 65533, 0, 6, 65533, 0, 65529, 65533, 0, 65538, 65533, 720896, 65542, 65533, 720896, 131065, 65533, 720896, 0, 65534, 1, 1, 65534, 0, 2, 65534, 0, 3, 65534, 1, 4, 65534, 1, 5, 65534, 0, 6, 65534, 0, 65529, 65534, 0, 65532, 65534, 1, 65537, 65534, 720896, 65538, 65534, 720896, 65542, 65534, 720896, 131065, 65534, 720896, 131073, 65534, 720897, 131074, 65534, 720897, 1, 65535, 0, 2, 65535, 0, 65529, 65535, 0, 65532, 65535, 1, 65533, 65535, 1, 65537, 65535, 720896, 65538, 65535, 720896, 131065, 65535, 720896, 131073, 65535, 720897, 131074, 65535, 720897, 196610, 65535, 720897 )
+"cells": PoolIntArray( 9, 0, 720897, 14, 0, 720896, 65521, 0, 720896, 65525, 0, 720897, 9, 1, 720897, 14, 1, 720896, 65521, 1, 720896, 65525, 1, 720897, 9, 2, 720897, 14, 2, 720896, 65521, 2, 720896, 65525, 2, 720897, 9, 3, 720897, 14, 3, 720896, 65521, 3, 720896, 65525, 3, 720897, 65526, 3, 720897, 65527, 3, 720897, 65528, 3, 720897, 65529, 3, 720897, 65530, 3, 720897, 65531, 3, 720897, 2, 4, 720897, 3, 4, 720897, 4, 4, 720897, 5, 4, 720897, 6, 4, 720897, 7, 4, 720897, 8, 4, 720897, 9, 4, 720897, 10, 4, 720897, 14, 4, 720896, 65521, 4, 720896, 65525, 4, 720897, 65531, 4, 720897, 3, 5, 720897, 14, 5, 720896, 65521, 5, 720896, 65525, 5, 720897, 65531, 5, 720897, 3, 6, 720897, 14, 6, 720896, 65521, 6, 720896, 65525, 6, 720897, 3, 7, 720897, 14, 7, 720896, 65521, 7, 720896, 14, 8, 720896, 65521, 8, 720896, 14, 9, 720896, 65521, 9, 720896, 2, 10, 720897, 3, 10, 720897, 4, 10, 720897, 5, 10, 720897, 6, 10, 720897, 7, 10, 720897, 8, 10, 720897, 9, 10, 720897, 10, 10, 720897, 14, 10, 720896, 65521, 10, 720896, 65526, 10, 720897, 65527, 10, 720897, 65528, 10, 720897, 65529, 10, 720897, 65530, 10, 720897, 65531, 10, 720897, 65532, 10, 720897, 65533, 10, 720897, 65534, 10, 720897, 14, 11, 720896, 65521, 11, 720896, 14, 12, 720896, 65521, 12, 720896, 5, 13, 720897, 14, 13, 720896, 65521, 13, 720896, 65525, 13, 720897, 0, 14, 720896, 1, 14, 720896, 2, 14, 720896, 3, 14, 720896, 4, 14, 720896, 5, 14, 720896, 6, 14, 720896, 7, 14, 720896, 8, 14, 720896, 9, 14, 720896, 10, 14, 720896, 11, 14, 720896, 12, 14, 720896, 13, 14, 720896, 14, 14, 720896, 65521, 14, 720896, 65522, 14, 720896, 65523, 14, 720896, 65524, 14, 720896, 65525, 14, 720896, 65526, 14, 720896, 65527, 14, 720896, 65528, 14, 720896, 65529, 14, 720896, 65530, 14, 720896, 65531, 14, 720896, 65532, 14, 720896, 65533, 14, 720896, 65534, 14, 720896, 65535, 14, 720896, 0, 65521, 720896, 1, 65521, 720896, 2, 65521, 720896, 3, 65521, 720896, 4, 65521, 720896, 5, 65521, 720896, 6, 65521, 720896, 7, 65521, 720896, 8, 65521, 720896, 9, 65521, 720896, 10, 65521, 720896, 11, 65521, 720896, 12, 65521, 720896, 13, 65521, 720896, 14, 65521, 720896, 65521, 65521, 720896, 65522, 65521, 720896, 65523, 65521, 720896, 65524, 65521, 720896, 65525, 65521, 720896, 65526, 65521, 720896, 65527, 65521, 720896, 65528, 65521, 720896, 65529, 65521, 720896, 65530, 65521, 720896, 65531, 65521, 720896, 65532, 65521, 720896, 65533, 65521, 720896, 65534, 65521, 720896, 65535, 65521, 720896, 14, 65522, 720896, 65521, 65522, 720896, 14, 65523, 720896, 65521, 65523, 720896, 14, 65524, 720896, 65521, 65524, 720896, 0, 65525, 720897, 1, 65525, 720897, 2, 65525, 720897, 3, 65525, 720897, 4, 65525, 720897, 5, 65525, 720897, 6, 65525, 720897, 7, 65525, 720897, 8, 65525, 720897, 9, 65525, 720897, 14, 65525, 720896, 65521, 65525, 720896, 65525, 65525, 720897, 65526, 65525, 720897, 65527, 65525, 720897, 65528, 65525, 720897, 65529, 65525, 720897, 65530, 65525, 720897, 65531, 65525, 720897, 9, 65526, 720897, 14, 65526, 720896, 65521, 65526, 720896, 65525, 65526, 720897, 9, 65527, 720897, 14, 65527, 720896, 65521, 65527, 720896, 65525, 65527, 720897, 9, 65528, 720897, 14, 65528, 720896, 65521, 65528, 720896, 65525, 65528, 720897, 65529, 65528, 720897, 65530, 65528, 720897, 65531, 65528, 720897, 65532, 65528, 720897, 65533, 65528, 720897, 9, 65529, 720897, 14, 65529, 720896, 65521, 65529, 720896, 65525, 65529, 720897, 65529, 65529, 720897, 9, 65530, 720897, 14, 65530, 720896, 65521, 65530, 720896, 65525, 65530, 720897, 65529, 65530, 720897, 14, 65531, 720896, 65521, 65531, 720896, 65529, 65531, 720897, 0, 65532, 720897, 1, 65532, 720897, 2, 65532, 720897, 3, 65532, 720897, 4, 65532, 720897, 5, 65532, 720897, 14, 65532, 720896, 65521, 65532, 720896, 5, 65533, 720897, 14, 65533, 720896, 65521, 65533, 720896, 5, 65534, 720897, 14, 65534, 720896, 65521, 65534, 720896, 9, 65535, 720897, 14, 65535, 720896, 65521, 65535, 720896, 65525, 65535, 720897 )
 }
 __meta__ = {
 "_editor_clip_": 0,
 "_editor_floor_": Vector3( 0, 0, 0 )
 }
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 0.225297, 1.47826, 7.27673 )
+script = ExtResource( 2 )
+
+[node name="PlayerCameraTarget" type="Spatial" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.864143, 0.503246, 0, -0.503246, 0.864143, 0, 4.38631, 7.35228 )
+
+[node name="Enemys" type="Spatial" parent="."]
+
+[node name="Enemy" parent="Enemys" instance=ExtResource( 7 )]
+transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, -14.6186, 1.47826, 2.35633 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemys/Enemy"]
+autoplay = "enimy1Animation"
+anims/RESET = SubResource( 7 )
+anims/enimy1Animation = SubResource( 8 )
+
+[node name="Enemy4" parent="Enemys" instance=ExtResource( 7 )]
+transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, -14.6186, 1.47826, 2.35633 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemys/Enemy4"]
+autoplay = "enimy4animation"
+anims/RESET = SubResource( 9 )
+anims/enimy1Animation = SubResource( 10 )
+anims/enimy4animation = SubResource( 11 )
+
+[node name="Enemy3" parent="Enemys" instance=ExtResource( 7 )]
+transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 23.9466, 1.47826, 18.1923 )
+
+[node name="Enemy2" parent="Enemys" instance=ExtResource( 7 )]
+transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 14.177, 1.47826, -16.0682 )
+
+[connection signal="body_exited" from="Enemys/Enemy" to="Player" method="_on_Enemy_body_exited"]
+[connection signal="body_exited" from="Enemys/Enemy4" to="Player" method="_on_Enemy_body_exited"]

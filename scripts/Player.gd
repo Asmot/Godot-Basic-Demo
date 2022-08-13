@@ -89,3 +89,11 @@ func _physics_process(delta):
 		
 	move_and_slide(velocity, Vector3(0, -1, 0));
 	
+
+
+func _on_Enemy_body_exited(body):
+	print ("hit somebody " + body.name)
+	if body.name == "Player":
+		print ("hit enemy ，game over " + body.name)
+		get_tree().change_scene("res://GameOver.tscn")
+	
