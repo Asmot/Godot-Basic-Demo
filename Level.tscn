@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://textures/TilesTerracottaRedHexagon001/TilesTerracottaRedHexagon001_NRM_1K.jpg" type="Texture" id=5]
 [ext_resource path="res://assets/blocksLibrary.tres" type="MeshLibrary" id=6]
 [ext_resource path="res://assets/Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Coin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scripts/UI.gd" type="Script" id=9]
+[ext_resource path="res://scripts/Coin.gd" type="Script" id=10]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -302,5 +305,64 @@ transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 23.9466, 1.4
 [node name="Enemy2" parent="Enemys" instance=ExtResource( 7 )]
 transform = Transform( 1.01085, 0, 0, 0, 1.01085, 0, 0, 0, 1.01085, 14.177, 1.47826, -16.0682 )
 
-[connection signal="body_exited" from="Enemys/Enemy" to="Player" method="_on_Enemy_body_exited"]
-[connection signal="body_exited" from="Enemys/Enemy4" to="Player" method="_on_Enemy_body_exited"]
+[node name="Coins" type="Spatial" parent="."]
+
+[node name="Coin" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280855, 2.0752, -0.57232 )
+script = ExtResource( 10 )
+
+[node name="Coin2" parent="Coins" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6178, 2.0752, 1.37595 )
+script = ExtResource( 10 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
+
+[node name="LabelCoins" type="Label" parent="UI"]
+margin_left = 28.0
+margin_top = 108.0
+margin_right = 110.0
+margin_bottom = 142.0
+text = "Coins:"
+
+[node name="LabelCoinsValue" type="Label" parent="UI"]
+margin_left = 77.0
+margin_top = 108.0
+margin_right = 159.0
+margin_bottom = 142.0
+text = "10"
+
+[node name="LabelLife" type="Label" parent="UI"]
+margin_left = 28.0
+margin_top = 74.0
+margin_right = 110.0
+margin_bottom = 108.0
+text = "Life:"
+
+[node name="LabelLifeValue" type="Label" parent="UI"]
+margin_left = 77.0
+margin_top = 74.0
+margin_right = 159.0
+margin_bottom = 108.0
+text = "1"
+
+[node name="LabelScore" type="Label" parent="UI"]
+margin_left = 28.0
+margin_top = 40.0
+margin_right = 110.0
+margin_bottom = 74.0
+text = "Score:"
+
+[node name="LabelScoreValue" type="Label" parent="UI"]
+margin_left = 77.0
+margin_top = 40.0
+margin_right = 159.0
+margin_bottom = 74.0
+text = "10"
+
+[connection signal="body_entered" from="Enemys/Enemy" to="Player" method="_on_Enemy_body_entered"]
+[connection signal="body_entered" from="Enemys/Enemy4" to="Player" method="_on_Enemy_body_entered"]
+[connection signal="body_entered" from="Coins/Coin" to="Coins/Coin" method="_on_Coin_body_entered"]
+[connection signal="body_entered" from="Coins/Coin2" to="Coins/Coin2" method="_on_Coin_body_entered"]

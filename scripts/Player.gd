@@ -17,14 +17,24 @@ var G = 9.8;
 const SPEED = 5;
 const SPEED_ROLL = 5;
 
+# scene nodes
+const NODE_NAME_CONINS = "Coins"
+const NODE_NAME_UI = "UI"
+
+var coinNode;
+var uiNode;
+
 func _ready():
 	print("Player " + playerName + " is ready")
 	print("Speed " + str(velocity))
-	connect("body_exited",self,"on_body_exited")
-
-func on_body_exited(node):
-	print("我是一个：" + name +  ",我撞完一个" + node.name)
-
+	
+	coinNode = get_parent().find_node(NODE_NAME_CONINS)
+	uiNode = get_parent().find_node(NODE_NAME_UI)
+	print("Coins count  %d"%(coinNode.get_child_count()));
+	
+	# init default value
+	uiNode.setLife(true)
+	
 # input event
 func _input(event):
 	if (event.device == KEY_W):
@@ -88,10 +98,8 @@ func _physics_process(delta):
 		
 		
 	move_and_slide(velocity, Vector3(0, -1, 0));
-	
 
-
-func _on_Enemy_body_exited(body):
+func _on_Enemy_body_entered(body):
 	print ("hit somebody " + body.name)
 	if body.name == "Player":
 		print ("hit enemy ，game over " + body.name)
