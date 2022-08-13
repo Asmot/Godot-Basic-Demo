@@ -2,21 +2,51 @@ extends KinematicBody
 
 var playerName = "Susan"
 
+enum JumpState {
+	Start = 0,
+	Jumping,
+	Idel
+}
+
 # speed
 var velocity = Vector3(0, 0, 0);
+var jumpState = JumpState.Idel;
+const JUMP_START_VELOCITY = 10;
+var G = 9.8;
+
 const SPEED = 5;
 const SPEED_ROLL = 5;
-
-const GRAVITY = 1000;
 
 func _ready():
 	print("Player " + playerName + " is ready")
 	print("Speed " + str(velocity))
+	connect("body_exited",self,"on_body_exited")
+
+func on_body_exited(node):
+	print("我是一个：" + name +  ",我撞完一个" + node.name)
 
 # input event
 func _input(event):
 	if (event.device == KEY_W):
 		print (event)
+		
+# jump start with a velocity, and slow down with gravity	
+# will change the velocity.y
+func _jump_process(delta):
+	if Input.is_action_just_pressed('ui_jump') and jumpState == JumpState.Idel:
+		jumpState = JumpState.Start;
+
+	if jumpState == JumpState.Start:
+		velocity.y = JUMP_START_VELOCITY
+		jumpState = JumpState.Jumping;
+	elif jumpState == JumpState.Jumping:
+		velocity.y -= G * delta;
+	
+	# if on the ground, finish jumping
+	var flag = is_on_floor()
+	if (velocity.y <  -2 *JUMP_START_VELOCITY):
+		velocity.y = 0
+		jumpState = JumpState.Idel;
 
 func _physics_process(delta):
 	
@@ -52,7 +82,10 @@ func _physics_process(delta):
 		$MeshInstance.rotate_x(deg2rad(SPEED_ROLL))
 	else:
 		velocity.z = lerp(velocity.z, 0, 0.1)
-		
 	
-	move_and_slide(velocity);
+
+	_jump_process(delta);
+		
+		
+	move_and_slide(velocity, Vector3(0, -1, 0));
 	

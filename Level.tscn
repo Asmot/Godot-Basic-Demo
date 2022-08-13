@@ -132,6 +132,7 @@ enabled = true
 transform = Transform( -0.885697, 0.447886, -0.122226, 0.140892, 0.510156, 0.848463, 0.442369, 0.73426, -0.514947, -0.0569839, 5.96404, 11.508 )
 shadow_enabled = true
 shadow_color = Color( 0.498039, 0.117647, 0.117647, 1 )
+shadow_bias = 0.922
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource( 6 )
