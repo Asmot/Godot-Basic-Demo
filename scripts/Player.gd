@@ -18,20 +18,15 @@ const SPEED = 5;
 const SPEED_ROLL = 5;
 
 # scene nodes
-const NODE_NAME_CONINS = "Coins"
 const NODE_NAME_UI = "UI"
 
-var coinNode;
 var uiNode;
 
 func _ready():
 	print("Player " + playerName + " is ready")
 	print("Speed " + str(velocity))
 	
-	coinNode = get_parent().find_node(NODE_NAME_CONINS)
 	uiNode = get_parent().find_node(NODE_NAME_UI)
-	print("Coins count  %d"%(coinNode.get_child_count()));
-	
 	# init default value
 	uiNode.setLife(true)
 	
